@@ -18,8 +18,9 @@ def binarize(pic, T):
 if(__name__=='__main__'):
     wife = Image.open('lena.bmp')
     pic_binarize = binarize(wife, 128)
+    pic_binarize.show()
     try:
         pic_binarize.save('./result/binarize.bmp')
     except:
-        print('Error! 請確認含 hw1.py 的目錄下存在 result 目錄!')
+        print('Error! 請確認含 binarize.py 的目錄下存在 result 目錄!')
         exit()

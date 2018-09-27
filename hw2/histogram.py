@@ -8,10 +8,11 @@ def histogram(pic):
     for I in range(512):
         for J in range(512):
             log.append(pic_load[I, J])
-    plt.hist(log, bins = [i for i in range(256)])
-    plt.show()
+    return log
 
 
 if __name__ == '__main__':
     wife = Image.open('lena.bmp')
-    histogram(wife)
+    log = histogram(wife)
+    plt.hist(log, bins = [i for i in range(256)])
+    plt.show()
