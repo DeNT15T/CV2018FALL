@@ -57,18 +57,15 @@ def ComponentSort(init_component):
         if(check == check_tmp):  # 若此輪完全沒進入if判別式，代表label單一化完成，跳出While迴圈
             break
 
-    component_labels = []   # 使用component_labels紀錄所有不為0的label
+    component_labels_dict = {}  # 使用component_labels_dict紀錄各label之出現次數（key=label：value=次數）
+
     for I in range(512):
         for J in range(512):
             if(init_component[I][J]>0):
-                component_labels.append(init_component[I][J])
-
-    component_labels_dict = {}  # 使用component_labels_dict紀錄各label之出現次數（key=label：value=次數）
-    for label in component_labels:
-        if(label not in component_labels_dict):
-            component_labels_dict[label] = 1
-        else:
-            component_labels_dict[label] += 1
+                if(init_component[I][J] not in component_labels_dict):
+                    component_labels_dict[init_component[I][J]] = 1
+                else:
+                    component_labels_dict[init_component[I][J]] += 1
 
     component_label_filter = {} # 使用component_label_filter紀錄出現次數>=500的label（key=label：value=次數）
     for key, value in component_labels_dict.items():
@@ -95,7 +92,7 @@ def ComponentSort(init_component):
                     max_y = max(I, max_y)
                     sum_x += J
                     sum_y += I
-        Component['ComponentNo%d' % key] = [min_x, max_x, min_y, max_y, value, sum_x, sum_y]
+        Component[key] = [min_x, max_x, min_y, max_y, value, sum_x, sum_y]
     return Component
 
 def DrawComponent(pic, Component):

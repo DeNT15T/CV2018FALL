@@ -14,7 +14,6 @@ def binarize(pic, T):
                 pic_binarize_load[i, j]=0
     return pic_binarize
 
-
 if(__name__=='__main__'):
     wife = Image.open('lena.bmp')
     pic_binarize = binarize(wife, 128)
